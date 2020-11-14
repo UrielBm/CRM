@@ -1,61 +1,67 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# MicroCrm
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Micro CRM
 
-## About Laravel
+version 1.2
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### SET UP
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   Requirements (Already covered with Docker deployment)
+    1.  Apache/2.4.27 or greater.
+    2.  MySQL 5.7 or greater.
+    3.  PHP/7.2.24 or greater.
+-   App Configuration
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+    1. Add host `microcrm.localhost`,
+       see [Edit hosts](https://dinahosting.com/ayuda/como-modificar-el-fichero-hosts).
+    2. Create `.env` file from `example.env` and set it.
+    3. Give Folder permissions:
+        ```
+        sudo chown -R $USER:www-data storage;
+          chmod -R 775 storage;
+          sudo chown -R $USER:www-data bootstrap/cache;
+          chmod -R 775 bootstrap/cache;
+        ```
+    4. Import database from `database/updates/*.sql` into `microcrm` DB
+       with `root` user, at `localhost` host, `33063` port.
+    5. Set `APP_KEY=base64:L086fuWzGdD7jlnsm4dFwwpyXX8qI7+bt5Wc4BAb4uU=` at `.env`.
+    6. Run `composer install`.
+    7. Run `php artisan storage:link`.
+    8. Run `php artisan migrate`.
 
-## Learning Laravel
+-   Load Fake Data (For Development and testing)
+    1. Copy and merge content from `fake-data/public` to `storage/app/public`.
+    2. Import database from `fake-data/*.sql` into `root_cochi` DB
+       with `root` user, at `localhost` host, `33063` port.
+-   App Settings
+    1. Browse [/admin/settings](http://cochi-crm.localhost/admin/settings).
+-   Create Admin User
+    Create Admin User:
+    ```
+    php artisan create-admin-user --user={email-here}
+    ```
+    Example:
+    ```
+    php artisan create-admin-user --user=admin@adlnetworks.com
+    ```
+-   Browse at [microcrm.localhost](http://microcrm.localhost).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+-   Voyager Back Office at [microcrm.localhost/admin](http://microcrm.localhost/admin).
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### CONTRIBUTION: Guidelines & Documentation
 
-## Laravel Sponsors
+-   Database Key Fields, tables and or values:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+    1.  `users.email`: Users email.
 
-### Premium Partners
+-   Git :
+    [Gitflow](http://nvie.com/posts/a-successful-git-branching-model).
+-   Back End:
+    [Laravel 7.x](https://laravel.com/docs/7.x),
+    [Laravel Voyager](https://docs.laravelvoyager.com).
+-   Front End:
+    [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction),
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+---
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+2020 [Uriel Benítez](https://github.com/UrielBm).
