@@ -1,8 +1,8 @@
-# Cochi CRM
+# MicroCrm
 
 Micro CRM
 
-versionm 1.0
+version 1.2
 
 ### SET UP
 
