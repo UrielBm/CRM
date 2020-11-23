@@ -9,5 +9,7 @@ class Lead extends Model
 {
     use Translatable;
     protected $translatable = ['title', 'body'];
-
+    protected $fillable = ['name', 'phone','message','step_id','email'];
 }
+
+

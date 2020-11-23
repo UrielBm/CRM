@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//Agregamos nuestra ruta al controller de leads
+Route::resource('Lead', 'leadController');
+//Agregamos nuestra ruta al controller de steps
+Route::resource('Step', 'stepController');
