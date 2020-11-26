@@ -1,4 +1,4 @@
-# Cochi CRM
+# Micro CRM
 
 Micro CRM
 
