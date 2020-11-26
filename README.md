@@ -1,8 +1,8 @@
-# MicroCrm
+# Micro CRM
 
 Micro CRM
 
-version 1.2
+version 1.3
 
 ### SET UP
 
@@ -34,12 +34,6 @@ version 1.2
     2. Import database from `fake-data/*.sql` into `root_cochi` DB
        with `root` user, at `localhost` host, `33063` port.
 -   App Settings
-    1. Browse [/admin/settings](http://cochi-crm.localhost/admin/settings).
--   Create Admin User
-    Create Admin User:
-    ```
-    php artisan create-admin-user --user={email-here}
-    ```
     Example:
     ```
     php artisan create-admin-user --user=admin@adlnetworks.com
@@ -47,6 +41,17 @@ version 1.2
 -   Browse at [microcrm.localhost](http://microcrm.localhost).
 
 -   Voyager Back Office at [microcrm.localhost/admin](http://microcrm.localhost/admin).
+
+### How Use Swagger In Laravel
+
+-   requeriments
+
+1. You have to have an App whit Laravel.
+2. you have to have a DB and use Artisan migrate or have tables in your DB
+3. you can check in composer.json if you have l5-swagger install if you don't have it, you can install with de command composer require "darkaonline/l5-swagger:5.8." or check the documentation in its repository [GitHub] (https://github.com/DarkaOnLine/L5-Swagger)
+4. if you dont have the view use the command php artisan vendor:publish --provider and check the view with the command php artisan route:list
+5. turn on the server with php artisan serve
+6. if everything is okey you can check the result in the new view in api/documentation
 
 ### CONTRIBUTION: Guidelines & Documentation
 
