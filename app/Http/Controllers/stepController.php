@@ -4,9 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Step;
-
 class stepController extends Controller
 {
+    /**
+    * @OA\Get(
+    *     path="/api/Step",
+    *     summary="Mostrar Steps",
+    *     @OA\Response(
+    *         response=200,
+    *         description="Mostrar todos los Steps."
+    *     ),
+    *     @OA\Response(
+    *         response="default",
+    *         description="Ha ocurrido un error."
+    *     )
+    * )
+    */
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +27,7 @@ class stepController extends Controller
      */
     public function index()
     {
-        //
+        return Step::all();
     }
 
     /**

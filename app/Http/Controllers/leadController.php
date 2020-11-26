@@ -4,9 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Lead;
-
+/**
+* @OA\Info(title="API Leads", version="1.0")
+*
+* @OA\Server(url="http://127.0.0.1:8000")
+*/
 class leadController extends Controller
 {
+    /**
+    * @OA\Get(
+    *     path="/api/Lead",
+    *     summary="Mostrar leads",
+    *     @OA\Response(
+    *         response=200,
+    *         description="Mostrar todos los leads."
+    *     ),
+    *     @OA\Response(
+    *         response="default",
+    *         description="Ha ocurrido un error."
+    *     )
+    * )
+    */
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +32,7 @@ class leadController extends Controller
      */
     public function index()
     {
-        //
+        return Lead::all();
     }
 
     /**
