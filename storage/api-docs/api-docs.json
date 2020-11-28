@@ -21,6 +21,168 @@
                         "description": "Ha ocurrido un error."
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Lead"
+                ],
+                "summary": "Adds a new Lead",
+                "operationId": "App\\Http\\Controllers\\leadController::store",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "string"
+                                    },
+                                    "id step": {
+                                        "type": "string"
+                                    },
+                                    "created_at": {
+                                        "type": "string"
+                                    },
+                                    "updated_at": {
+                                        "type": "string"
+                                    },
+                                    "message": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Ruben",
+                                    "phone": "7711111111",
+                                    "message": "Esto es una prueba",
+                                    "step_id": "1",
+                                    "email": "prueba_ruben@prueba.com"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/Lead/{id}": {
+            "get": {
+                "tags": [
+                    "Lead"
+                ],
+                "summary": "Get Lead information",
+                "description": "Returns Lead data",
+                "operationId": "getLeadById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Lead id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Lead"
+                ],
+                "summary": "Update a  Lead",
+                "operationId": "App\\Http\\Controllers\\leadController::update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Lead id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "string"
+                                    },
+                                    "id step": {
+                                        "type": "integer"
+                                    },
+                                    "created_at": {
+                                        "type": "date time"
+                                    },
+                                    "updated_at": {
+                                        "type": "date time"
+                                    },
+                                    "message": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Ruben",
+                                    "phone": "7712003337",
+                                    "message": "esto es una prueba de update",
+                                    "step_id": "4",
+                                    "email": "pruebaruben@prueba.com",
+                                    "created_at": "2020-11-07 15:45:00",
+                                    "updated_at": "2020-11-07 15:45:00"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Lead"
+                ],
+                "summary": "Delete existing Lead",
+                "description": "Deletes a record and returns no content",
+                "operationId": "delete Lead",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Lead id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
             }
         },
         "/api/Step": {
@@ -32,6 +194,136 @@
                     },
                     "default": {
                         "description": "Ha ocurrido un error."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Step"
+                ],
+                "summary": "Adds a new Step",
+                "operationId": "App\\Http\\Controllers\\stepController::store",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "Key": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "key": "en-seguimiento",
+                                    "value": "en seguimiento"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/Step/{id}": {
+            "get": {
+                "tags": [
+                    "Step"
+                ],
+                "summary": "Get Step information",
+                "description": "Returns Step data",
+                "operationId": "getStepById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Step id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Step"
+                ],
+                "summary": "Update a  Step",
+                "operationId": "App\\Http\\Controllers\\stepController::update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Step id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "key": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "key": "en-seguimiento",
+                                    "value": "en seguimiento"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Step"
+                ],
+                "summary": "Delete existing Step",
+                "description": "Deletes a record and returns no content",
+                "operationId": "delete Step",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Step id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
                     }
                 }
             }

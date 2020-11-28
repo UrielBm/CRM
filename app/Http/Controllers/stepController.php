@@ -46,6 +46,34 @@ class stepController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    /**
+ * @OA\Post(
+ *     path="/api/Step",
+ *    tags={"Step"},
+ *     summary="Adds a new Step",
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="Key",
+ *                     type="string"
+ *                 ),
+ *                     @OA\Property(
+ *                     property="name",
+ *                     type="string"
+ *                 ),
+ *                 example={"key": "en-seguimiento",
+ *                          "value": "en seguimiento"}
+ *             )
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="OK"
+ *     )
+ * )
+ */
     public function store(Request $request)
     {
                 //Instanciamos la clase Lead
@@ -62,6 +90,32 @@ class stepController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+    /**
+     * @OA\Get(
+     *      path="/api/Step/{id}",
+     *      operationId="getStepById",
+     *      tags={"Step"},
+     *      summary="Get Step information",
+     *      description="Returns Step data",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Step id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     * )
      */
     public function show($id)
     {
@@ -88,6 +142,43 @@ class stepController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /**
+ * @OA\Put(
+ *     path="/api/Step/{id}",
+ *    tags={"Step"},
+ *     summary="Update a  Step",
+    *      @OA\Parameter(
+     *          name="id",
+     *          description="Step id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+ *     @OA\RequestBody(
+ *          @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="key",
+ *                     type="string"
+ *                 ),
+ *                     @OA\Property(
+ *                     property="name",
+ *                     type="string"
+ *                 ),
+ *                 example={"key": "en-seguimiento",
+ *                          "value": "en seguimiento"}
+ *             )
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="OK"
+ *     )
+ * )
+ */
     public function update(Request $request, $id)
     {
         $step = Step::find($id);
@@ -102,6 +193,28 @@ class stepController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+    /**
+     * @OA\Delete(
+     *      path="/api/Step/{id}",
+     *      operationId="delete Step",
+     *      tags={"Step"},
+     *      summary="Delete existing Step",
+     *      description="Deletes a record and returns no content",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Step id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     * )
      */
     public function destroy($id)
     {

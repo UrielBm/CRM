@@ -51,6 +51,53 @@ class leadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    /**
+ * @OA\Post(
+ *     path="/api/Lead",
+ *    tags={"Lead"},
+ *     summary="Adds a new Lead",
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="name",
+ *                     type="string"
+ *                 ),
+ *                     @OA\Property(
+ *                     property="phone",
+ *                     type="string"
+ *                 ),
+ * *                     @OA\Property(
+ *                     property="id step",
+ *                     type="string"
+ *                 ),
+ *                     @OA\Property(
+ *                     property="created_at",
+ *                     type="string"
+ *                 ),
+ *                     @OA\Property(
+ *                     property="updated_at",
+ *                     type="string"
+ *                 ),
+ *  *                     @OA\Property(
+ *                     property="message",
+ *                     type="string"
+ *                 ),
+ *                 example={"name": "Ruben",
+ *                          "phone": "7711111111",
+ *                          "message": "Esto es una prueba",
+ *                          "step_id": "1",
+ *                           "email": "prueba_ruben@prueba.com",}
+ *             )
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="OK"
+ *     )
+ * )
+ */
     public function store(Request $request)
     {
          //Instanciamos la clase Lead
@@ -72,6 +119,32 @@ class leadController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+    /**
+     * @OA\Get(
+     *      path="/api/Lead/{id}",
+     *      operationId="getLeadById",
+     *      tags={"Lead"},
+     *      summary="Get Lead information",
+     *      description="Returns Lead data",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Lead id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     * )
      */
     public function show($id)
     {
@@ -97,6 +170,64 @@ class leadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /**
+ * @OA\Put(
+ *     path="/api/Lead/{id}",
+ *    tags={"Lead"},
+ *     summary="Update a  Lead",
+    *      @OA\Parameter(
+     *          name="id",
+     *          description="Lead id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+ *     @OA\RequestBody(
+ *          @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="name",
+ *                     type="string"
+ *                 ),
+ *                     @OA\Property(
+ *                     property="phone",
+ *                     type="string"
+ *                 ),
+ * *                     @OA\Property(
+ *                     property="id step",
+ *                     type="integer"
+ *                 ),
+ *                     @OA\Property(
+ *                     property="created_at",
+ *                     type="date time"
+ *                 ),
+ *                     @OA\Property(
+ *                     property="updated_at",
+ *                     type="date time"
+ *                 ),
+ *  *                     @OA\Property(
+ *                     property="message",
+ *                     type="string"
+ *                 ),
+ *                 example={"name": "Ruben",
+ *                          "phone": "7712003337",
+ *                          "message": "esto es una prueba de update",
+ *                          "step_id": "4",
+ *                          "email": "pruebaruben@prueba.com",
+ *                          "created_at": "2020-11-07 15:45:00",
+ *                           "updated_at": "2020-11-07 15:45:00",}
+ *             )
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="OK"
+ *     )
+ * )
+ */
     public function update(Request $request, $id)
     {
         $lead = Lead::find($id);
@@ -106,6 +237,8 @@ class leadController extends Controller
         $lead->message = $request->message;
         $lead->step_id = $request->step_id;
         $lead->email = $request->email;
+        $lead->created_at = $request->created_at;
+        $lead->updated_at = $request->updated_at;
         $lead->save();
     }
 
@@ -114,6 +247,28 @@ class leadController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+    /**
+     * @OA\Delete(
+     *      path="/api/Lead/{id}",
+     *      operationId="delete Lead",
+     *      tags={"Lead"},
+     *      summary="Delete existing Lead",
+     *      description="Deletes a record and returns no content",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Lead id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     * )
      */
     public function destroy($id)
     {
