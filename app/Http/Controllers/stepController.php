@@ -76,6 +76,20 @@ class stepController extends Controller
  */
     public function store(Request $request)
     {
+               
+            //vreacioón de reglas de validación
+            $rules = [
+                'key' => ['required' , 'string','min:2','max:18'],
+                'value' => ['required','string','min:2', 'max:18']
+            ];
+                //Ejecutamos el validador,en caso de que falle devolvemos una respuesta
+                $validator = \Validator::make($request->all(),$rules);
+                if($validator->fails()){
+                    return [
+                        'created' => false,
+                        'errors' => $validator->errors()->all()
+                    ];
+                }
                 //Instanciamos la clase Lead
                 $step = new Step;
                 //Declaramos el nombre con el nombre enviado en el request
@@ -181,6 +195,20 @@ class stepController extends Controller
  */
     public function update(Request $request, $id)
     {
+       
+       //Creamos las reglas de validación
+                  $rules = [
+                    'key' => ['required' , 'string','min:2','max:18'],
+                    'value' => ['required','string','min:2', 'max:18']
+                ];
+                    //Ejecutamos el validador,en caso de que falle devolvemos una respuesta
+                    $validator = \Validator::make($request->all(),$rules);
+                    if($validator->fails()){
+                        return [
+                            'created' => false,
+                            'errors' => $validator->errors()->all()
+                        ];
+                    }
         $step = Step::find($id);
         
         $step->key = $request->key;

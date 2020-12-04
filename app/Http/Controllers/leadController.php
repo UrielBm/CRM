@@ -100,7 +100,24 @@ class leadController extends Controller
  */
     public function store(Request $request)
     {
-         //Instanciamos la clase Lead
+        
+        //creación de reglas de validación.
+        $rules = [
+            'name' => ['required' , 'string', 'min:3', 'max:25'],
+            'phone' => ['required', 'integer', 'min:10', 'max:10'],
+            'message' => ['required', 'string', 'min:5', 'max:255'],
+            'step_id' => ['required', 'integer','numeric', 'min:1'],
+            'email' =>  ['required', 'email']
+        ];
+            // Ejecuación de las reglas de validación
+            $validator = \Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return [
+                'created' => false,
+                'errors'  => $validator->errors()->all()
+            ];
+        }
+        //Instanciamos la clase Lead
          $lead = new Lead;
         //    dd($request->phone); 
          //Declaramos el nombre con el nombre enviado en el request
@@ -230,6 +247,23 @@ class leadController extends Controller
  */
     public function update(Request $request, $id)
     {
+        //creación de reglas de validación.
+        $rules = [
+            'name' => ['required' , 'string', 'min:3', 'max:25'],
+            'phone' => ['required', 'integer', 'min:10', 'max:10'],
+            'message' => ['required', 'string', 'min:5', 'max:255'],
+            'step_id' => ['required', 'integer', 'min:1'],
+            'email' =>  ['required', 'email']
+        ];
+            // Ejecuación de las reglas de validación
+            $validator = \Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return [
+                'created' => false,
+                'errors'  => $validator->errors()->all()
+            ];
+        }
+
         $lead = Lead::find($id);
         
         $lead->name = $request->name;
